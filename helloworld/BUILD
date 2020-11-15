@@ -8,6 +8,12 @@ pex_binary(
 )
 
 pex_binary(
+    name = "rayburst",
+    sources=["rayburst.py"],
+    entry_point="helloworld.rayburst",
+)
+
+pex_binary(
     name="helloworld_py2",
     sources=["main_py2.py"],
     entry_point="helloworld.main_py2",

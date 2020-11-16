@@ -22,16 +22,22 @@ class Counter(object):
     def read(self):
         return self.n
 
-# on Mac brew services restart redis
-# spin local redis `docker run -v redis.conf:/usr/local/etc/redis/redis.conf -d --name redis -p 6379:6379  redis:5.0.10  redis-server /usr/local/etc/redis/redis.conf`
-if __name__ == "__main__":
-    say_hello()
-    # see redis.conf
-    ray.init(address="localhost:6379", _redis_password="testtesttest")
 
-    for i in range(1,20):
-        counters = [Counter.remote() for i in range(4)]
-        [c.increment.remote() for c in counters]
-        futures = [c.read.remote() for c in counters]
-        print(ray.get(futures))
-    ray.shutdown()
+if __name__ == "__main__":
+    #patch 
+    import resource
+    # Related to https://github.com/ray-project/ray/issues/12033
+    print ("========= bootstrap")
+    print (resource.getrlimit(resource.RLIMIT_NOFILE)) # this number doesnt look right 
+    resource.setrlimit(resource.RLIMIT_NOFILE,(1024,655360))
+    print ("========= endBootstrap")
+    say_hello()
+    # Hang here
+    ray.init()
+    # counters = [Counter.remote() for i in range(4)]
+
+    # for i in range(1,20):
+    #     [c.increment.remote() for c in counters]
+    #     futures = [c.read.remote() for c in counters]
+    #     print(ray.get(futures))
+    #ray.shutdown()

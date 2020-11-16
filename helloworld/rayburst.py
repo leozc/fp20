@@ -27,6 +27,7 @@ if __name__ == "__main__":
     #patch 
     import resource
     # Related to https://github.com/ray-project/ray/issues/12033
+    # NOTE: sure your outter env install the same version of ray
     print ("========= bootstrap")
     print (resource.getrlimit(resource.RLIMIT_NOFILE)) # this number doesnt look right 
     resource.setrlimit(resource.RLIMIT_NOFILE,(1024,655360))
@@ -34,10 +35,10 @@ if __name__ == "__main__":
     say_hello()
     # Hang here
     ray.init()
-    # counters = [Counter.remote() for i in range(4)]
+    counters = [Counter.remote() for i in range(4)]
 
-    # for i in range(1,20):
-    #     [c.increment.remote() for c in counters]
-    #     futures = [c.read.remote() for c in counters]
-    #     print(ray.get(futures))
-    #ray.shutdown()
+    for i in range(1,20):
+         [c.increment.remote() for c in counters]
+         futures = [c.read.remote() for c in counters]
+         print(ray.get(futures))
+    ray.shutdown()

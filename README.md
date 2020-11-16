@@ -1,3 +1,6 @@
+# Run Ray Example
+./pants run helloworld/rayburst.py
+
 # example-python
 An example repository to demonstrate Python support in Pants.
 

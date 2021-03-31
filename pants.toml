@@ -2,8 +2,8 @@
 # Licensed under the Apache License, Version 2.0 (see LICENSE).
 
 [GLOBAL]
-pants_version = "2.1.0rc0"
-pantsd = true  # Enable the Pants daemon for better performance.
+pants_version = "2.3.0"
+pantsd = false  # Enable the Pants daemon for better performance.
 
 backend_packages.add = [
   "pants.backend.awslambda.python",
@@ -23,11 +23,14 @@ backend_packages.add = [
 # The Python source root is the repo root. See https://www.pantsbuild.org/docs/source-roots.
 root_patterns = ["/"]
 
+##[python-infer]
+##inits = true
+
 [python-setup]
 # The default interpreter compatibility for code in this repo. Individual targets can override
 #  this with the `interpreter_constraints` field. See
 #  https://www.pantsbuild.org/docs/python-interpreter-compatibility.
-interpreter_constraints = [">=3.7"]
+interpreter_constraints = [">=3.8"]
 # Use a constraints file. See https://www.pantsbuild.org/docs/python-third-party-dependencies.
 requirement_constraints = "constraints.txt"
 # We search for interpreters on both on the $PATH and in the `$(pyenv root)/versions` folder.
@@ -38,7 +41,7 @@ interpreter_search_paths = ["<PATH>", "<PYENV>"]
 
 [python-protobuf]
 # See https://www.pantsbuild.org/docs/protobuf.
-runtime_dependencies = ["//:protobuf"]
+runtime_dependencies = ["//:grpcio", "//:protobuf"]
 mypy_plugin = true
 
 [flake8]

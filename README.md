@@ -1,6 +1,9 @@
 # Run Ray Example
 ./pants run helloworld/rayburst.py
 
+# Run torch 
+./pants run torch_demo:runtorch
+
 # example-python
 An example repository to demonstrate Python support in Pants.
 

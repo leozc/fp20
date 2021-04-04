@@ -38,6 +38,7 @@ requirement_constraints = "constraints.txt"
 #  problematic system Pythons. See
 #  https://www.pantsbuild.org/docs/python-interpreter-compatibility#changing-the-interpreter-search-path.
 interpreter_search_paths = ["<PATH>", "<PYENV>"]
+resolver_version = 'pip-2020-resolver'
 
 [python-protobuf]
 # See https://www.pantsbuild.org/docs/protobuf.

@@ -1,9 +1,12 @@
 python_library(
     name = "raylib",
     sources=["*.py"],
+    
+    # dependencies = [],
 )
 pex_binary(
-    name = "rayburst",
+    dependencies=[":raylib"],
     entry_point="ray_demo.rayburst",
-    dependencies=[":raylib"]
+    #execution_mode='zipapp',
+    name = "ray_demo",
 )

@@ -1,4 +1,3 @@
-
 import ray
 import time
 import random
@@ -14,30 +13,17 @@ class Counter(object):
 
     def increment(self):
         self.n += 1
-        time.sleep( random.randint(1, 50) )
+        time.sleep( random.randint(1, 3) )
 
     def read(self):
         return self.n
 
 
 if __name__ == "__main__":
-    #patch 
-    #import resource
-    # Related to https://github.com/ray-project/ray/issues/12033
-    # NOTE: sure your outter env install the same version of ray
-    #print ("========= bootstrap")
-    #print (resource.getrlimit(resource.RLIMIT_NOFILE)) # this number doesnt look right 
-    # resource.setrlimit(resource.RLIMIT_NOFILE,(1024,655360))
-    #print ("========= endBootstrap")
-    #say_hello()
-    # Hang here
+    #patch
+    # Hang here - and check out the ray worker errors as below
+    # ~/.cache/pants/named_caches/pex_root/installed_wheels/a0d5c63d05cf2c837e5e8a0f410c1075f296d621/ray-1.0.1-cp38-cp38-macosx_10_13_x86_64.whl/ray/workers/default_worker.py", line 7, in <module>
+    # import ray
+    # ModuleNotFoundError: No module named 'ray'
+    # Traceback (most recent call last):
     ray.init()
-    counters = [Counter.remote() for i in range(4)]
-
-    for i in range(1,20):
-         [c.increment.remote() for c in counters]
-         futures = [c.read.remote() for c in counters]
-         print ("WAIT")
-         print(ray.get(futures))
-
-    #ray.shutdown()

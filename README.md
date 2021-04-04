@@ -1,5 +1,7 @@
 # Run Ray Example with repo issue
-## this runs ray init, start workers in a PEX form
+
+## this runs ray init, start workers in a PEX cointainer
+
 ./pants run ray_demo:
 
 # Run torch 

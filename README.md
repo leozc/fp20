@@ -1,5 +1,6 @@
-# Run Ray Example
-./pants run helloworld/rayburst.py
+# Run Ray Example with repo issue
+## this runs ray init, start workers in a PEX form
+./pants run ray_demo:
 
 # Run torch 
 ./pants run torch_demo:runtorch

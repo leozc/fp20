@@ -1,13 +1,10 @@
 python_library(
     name = "raylib",
-    sources=["*.py"],
-    
-    # dependencies = [],
+    interpreter_constraints = ["CPython==3.8.*"]
 )
 pex_binary(
     dependencies=[":raylib"],
     entry_point="ray_demo.rayburst",
-    #execution_mode='zipapp',
     name = "ray_demo",
     execution_mode= 'venv',
 )

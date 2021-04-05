@@ -29,12 +29,8 @@ class CounterActor(object):
 
 ## An example for polling ray actors for their work progress.
 if __name__ == "__main__":
-    # patch
-    # Hang here - and check out the ray worker errors as below
-    # ~/.cache/pants/named_caches/pex_root/installed_wheels/a0d5c63d05cf2c837e5e8a0f410c1075f296d621/ray-1.0.1-cp38-cp38-macosx_10_13_x86_64.whl/ray/workers/default_worker.py", line 7, in <module>
-    # import ray
-    # ModuleNotFoundError: No module named 'ray'
-    # Traceback (most recent call last):
+    # 
+    #  Hang here, if ray is not globally installed (in your default venv?)
     ray.init()
     counters = [
         CounterActor.options("c {}".format(x)).remote() for x in range(10)

@@ -4,11 +4,6 @@ import random
 from ray.util import ActorPool
 import asyncio
 
-
-def say_hello() -> int:
-    print ("Hello")
-    return 1
-
 @ray.remote
 class CounterActor(object):
     def __init__(self):
@@ -29,14 +24,16 @@ class CounterActor(object):
 
 ## An example for polling ray actors for their work progress.
 if __name__ == "__main__":
-    # 
+    #
     #  Hang here, if ray is not globally installed (in your default venv?)
-    ray.init()
+    ray.init()  
+    
+    # init x objects
     counters = [
         CounterActor.options("c {}".format(x)).remote() for x in range(10)
     ]
+
     # pool = ActorPool(counters)
-    # init x objects
     c_increased = [c.increment.remote() for c in counters] # call increase for these objects
 
     allDone= False
@@ -45,3 +42,5 @@ if __name__ == "__main__":
         allDone = all(map(lambda x: x[1], array_of_count_done))
         print(array_of_count_done)
         time.sleep(1)
+
+    ray.shutdown()

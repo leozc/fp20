@@ -2,13 +2,18 @@
 
 ## this runs ray init, start workers in a PEX cointainer, but it doesn't work yet
 
-./pants run ray_demo: 
+
+```
+./pants run ray_demo # it works only if ray package is globally available
+./pants package ray_demo # to package it, and it blows up
+```
 
 ## this works asusme you have the deps in the venv ready 
 
+```
 python ray_demo/rayburst.py
-
-# Run torch 
+```
+# Run pyTorch 
 
 ./pants run torch_demo:runtorch
 

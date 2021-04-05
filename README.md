@@ -1,13 +1,19 @@
 # Run Ray Example with repo issue
 
-## this runs ray init, start workers in a PEX cointainer
+## this runs ray init, start workers in a PEX cointainer, but it doesn't work yet
 
-./pants run ray_demo:
+./pants run ray_demo: 
+
+## this works asusme you have the deps in the venv ready 
+
+python ray_demo/rayburst.py
 
 # Run torch 
+
 ./pants run torch_demo:runtorch
 
 # example-python
+
 An example repository to demonstrate Python support in Pants.
 
 See [pantsbuild.org](https://www.pantsbuild.org/docs) for much more detailed documentation.

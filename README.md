@@ -13,9 +13,9 @@
 ```
 python ray_demo/rayburst.py
 ```
-# Run pyTorch 
+# Run pyTorch and Numpy + Pandas
 
-./pants run torch_demo:runtorch
+./pants run torch_demo:
 
 # example-python
 

@@ -2,6 +2,7 @@
 # Licensed under the Apache License, Version 2.0 (see LICENSE).
 ansicolors>=1.0.2
 grpcio==1.32.0
+pandas>=1.2.3
 protobuf>=3.12.1
 pyarrow>=3.0.0
 ray>=1.2.0

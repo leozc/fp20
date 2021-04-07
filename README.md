@@ -4,8 +4,8 @@
 
 
 ```
-./pants run ray_demo # it works only if ray package is globally available
-./pants package ray_demo # to package it, and it blows up
+./pants run ray_demo # run a binary 
+./pants package ray_demo # Package it and it is in dist/
 ```
 
 ## this works asusme you have the deps in the venv ready 

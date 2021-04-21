@@ -1,20 +1,12 @@
-# Run Ray Example with repo issue
+# Run Ray Example and generate packages
 
-## this runs ray init, start workers in a PEX cointainer, but it doesn't work yet
-
-
-```
+```bash
 ./pants list ray_demo: # list the targets
 ./pants run ray_demo # run a binary
 ./pants package ray_demo:ray_demo # Package in PEX the pex is in dist/
 ./pants package ray_demo:ray_dist # Package in Wheel
 ```
 
-## this works asusme you have the deps in the venv ready 
-
-```
-python ray_demo/rayburst.py
-```
 # Run pyTorch and Numpy + Pandas
 
 ./pants run torch_demo:

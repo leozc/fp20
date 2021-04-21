@@ -4,8 +4,10 @@
 
 
 ```
-./pants run ray_demo # run a binary 
-./pants package ray_demo # Package it and it is in dist/
+./pants list ray_demo: # list the targets
+./pants run ray_demo # run a binary
+./pants package ray_demo:ray_demo # Package in PEX the pex is in dist/
+./pants package ray_demo:ray_dist # Package in Wheel
 ```
 
 ## this works asusme you have the deps in the venv ready 

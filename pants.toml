@@ -2,7 +2,7 @@
 # Licensed under the Apache License, Version 2.0 (see LICENSE).
 
 [GLOBAL]
-pants_version = "2.3.0"
+pants_version = "2.4.0"
 pantsd = false  # Enable the Pants daemon for better performance.
 
 backend_packages.add = [
@@ -38,7 +38,6 @@ requirement_constraints = "constraints.txt"
 #  problematic system Pythons. See
 #  https://www.pantsbuild.org/docs/python-interpreter-compatibility#changing-the-interpreter-search-path.
 interpreter_search_paths = ["<PATH>", "<PYENV>"]
-resolver_version = 'pip-2020-resolver'
 
 [python-protobuf]
 # See https://www.pantsbuild.org/docs/protobuf.
@@ -53,3 +52,7 @@ config = [".isort.cfg"]
 
 [mypy]
 config = "build-support/mypy.ini"
+
+[anonymous-telemetry]
+enabled = true
+repo_id = "83C8E4F3-E90C-4A98-89CD-6260AF4DB115"

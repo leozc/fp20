@@ -3,7 +3,7 @@
 
 [GLOBAL]
 pants_version = "2.4.0"
-pantsd = false  # Enable the Pants daemon for better performance.
+pantsd = true  # Enable the Pants daemon for better performance.
 
 backend_packages.add = [
   "pants.backend.awslambda.python",

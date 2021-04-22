@@ -4,6 +4,10 @@
 * `ray_demo` - a full example of ray distributive workers on local cluster
 * `torch_demo` - Pytorch, Numpy and Pandas
 * `pl_examples` - pytorch lightening examples (with some known testing errors)
+
+# Prep 
+conda install python=3.8.8 # install 3.8 python intepreter
+
 # Run Ray Example and generate packages
 
 ```bash

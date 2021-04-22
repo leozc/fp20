@@ -11,8 +11,19 @@ pantsd = false
 # the number of cores/threads.
 process_execution_local_parallelism = 2
 
+# Ref https://www.pantsbuild.org/docs/using-pants-in-ci
+
+[GOBAL]
+dynamic_ui = false
+process_execution_local_parallelism = 4  
+colors = true
+
+
 [python-setup]
 # Limit the maximum number of concurrent jobs used to resolve third
 # party dependencies. The total level of parallelism will be
 # `process_execution_local_parallelism x resolver_jobs`.
 resolver_jobs = 2
+
+[pytest]
+args = ["-vv"]

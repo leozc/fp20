@@ -1,3 +1,9 @@
+# What it contains
+`helloworld` - simple hello world with protobuf
+`py_helloworld` - simple hello world with more testings
+`ray_demo` - a full example of ray distributive workers on local cluster
+`torch_demo` - Pytorch, Numpy and Pandas
+`pl_examples` - pytorch lightening examples (with some known testing errors)
 # Run Ray Example and generate packages
 
 ```bash
@@ -10,6 +16,12 @@
 # Run pyTorch and Numpy + Pandas
 
 ./pants run torch_demo:
+
+# Run tests
+
+```
+./pants test py_helloworld/test/test_*
+```
 
 # example-python
 

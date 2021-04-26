@@ -37,7 +37,9 @@ requirement_constraints = "constraints.txt"
 #  If you're using macOS, you may want to leave off the <PATH> entry to avoid using the
 #  problematic system Pythons. See
 #  https://www.pantsbuild.org/docs/python-interpreter-compatibility#changing-the-interpreter-search-path.
-interpreter_search_paths = ["<PATH>", "<CONDA_PREFIX>","<PYENV>"]
+
+#interpreter_search_paths = ["<PATH>", "<CONDA_PREFIX>","<PYENV>"]
+interpreter_search_paths = ["<PATH>", "<PYENV>"]
 
 [python-protobuf]
 # See https://www.pantsbuild.org/docs/protobuf.

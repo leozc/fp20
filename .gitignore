@@ -6,7 +6,8 @@
 /dist
 /.pids
 /.pants.workdir.file_lock*
-
+/.cache
+/.vscode
 # Python files
 __pycache__/
 *.pyc

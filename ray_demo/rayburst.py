@@ -43,4 +43,4 @@ if __name__ == "__main__":
         print(array_of_count_done)
         time.sleep(1)
 
-    ray.shutdown()
+    #ray.shutdown()

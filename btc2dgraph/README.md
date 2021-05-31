@@ -1,21 +1,38 @@
 # BTC Block to RDF
 
-The following command generate [RDF N-Quad/Triple data](https://dgraph.io/docs/deploy/fast-data-loading/overview/) to standard out
+It is not a complete nor fully working version, but it should be helpful on illistrating how to convert BTC RPC result to RDF and import to DGraph through RDF.
+
+The following command generate [RDF N-Quad/Triple data](https://dgraph.io/docs/deploy/fast-data-loading/overview/) to `stdout`.
 
 ```bash
-./pants run btc2dgraph/main.py   -- -b BLOCKHEIGHT
+./pants run btc2dgraph/main.py   -- -b BLOCKHEIGHT # Where the `BLOCKHEIGHT` is the block heigh, output is attached at the end of this doc
 ```
 
-Where the `BLOCKHEIGHT` is the block heigh.
+## Setup
 
-## TO DO
+* Install docker and run `docker-compose up` on the project folder (`docker-compose.yml`). After the dockers are up and make sure the ports are accessible.
+* Access to `Ratel` locally through `http://localhost:8000/`, and alternatively you can use [DQL playground](https://play.dgraph.io/?latest)
+* Run the code to generate RDF triples.
+* In `Mutate` tab, paste the triples to insert. (note, you need to use `set` command, please see [DQL Mutations](https://dgraph.io/docs/mutations/triples/) for reference)
 
-* design a schema
-* Fill more fields
-* Drill down to Transaction
-* Work on Xid [xid] (https://dgraph.io/docs/mutations/external-ids/) and make hash value become the actual node id.
+## TODOs
 
-## Here is an example payload for BTC block (400)
+* design a schema that allow partitioned import
+* Complete the fields.
+* Drill down to Transaction (input and output)
+* Work on Xid [xid](https://dgraph.io/docs/mutations/external-ids/) and make hash value become the actual node id.
+* Test the precision of numbers.
+* Exposing DQL type to GraphQL
+
+## Reference and Tutorial
+
+The learning curve of GraphDB is steep, be patient and start out with some reading would be very helpful.
+
+* [DQL Schema](https://dgraph.io/docs/query-language/schema/).
+* [DQL Type](https://dgraph.io/docs/query-language/type-system/)
+* [DQL Query](https://dgraph.io/docs/query-language/graphql-fundamentals/)
+
+# Here is an example payload for BTC block (400)
 
 ```json
 
@@ -77,4 +94,27 @@ Where the `BLOCKHEIGHT` is the block heigh.
     }
   ]
 }
+```
+
+## Example output RDF
+
+```bash
+❯ ./pants run btc2dgraph: -- -b 100000
+Looking into Block 100000
+_:000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506 <hash> "000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506"^^<xs:string> .
+_:000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506 <ver> "1"^^<xs:int> .
+_:000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506 <prev_block> _:000000000002d01c1fccc21636b607dfd930d31d01c3a62104612a1719011250 .
+_:000000000002d01c1fccc21636b607dfd930d31d01c3a62104612a1719011250 <prev_block_hash> "000000000002d01c1fccc21636b607dfd930d31d01c3a62104612a1719011250"^^<xs:string>  .
+_:000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506 <mrkl_root> _:f3e94742aca4b5ef85488dc37c06c3282295ffec960994b2c0d5ac2a25a95766 .
+_:000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506 <time> "1293623863"^^<xs:int> .
+_:000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506 <dgraph.type> "Block" .
+_:000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506 <next_block> _:00000000000080b66c911bd5ba14a74260057311eaeb1982802f7010f1a9f090 .
+_:000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506 <tx> _:8c14f0db3df150123e6f3dbbf30f8b955a8249b62ac1d1ff16284aefa3d06d87 .
+_:8c14f0db3df150123e6f3dbbf30f8b955a8249b62ac1d1ff16284aefa3d06d87 <tx_hash> "8c14f0db3df150123e6f3dbbf30f8b955a8249b62ac1d1ff16284aefa3d06d87"^^<xs:string>  .
+_:000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506 <tx> _:fff2525b8931402dd09222c50775608f75787bd2b87e56995a7bdd30f79702c4 .
+_:fff2525b8931402dd09222c50775608f75787bd2b87e56995a7bdd30f79702c4 <tx_hash> "fff2525b8931402dd09222c50775608f75787bd2b87e56995a7bdd30f79702c4"^^<xs:string>  .
+_:000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506 <tx> _:6359f0868171b1d194cbee1af2f16ea598ae8fad666d9b012c8ed2b79a236ec4 .
+_:6359f0868171b1d194cbee1af2f16ea598ae8fad666d9b012c8ed2b79a236ec4 <tx_hash> "6359f0868171b1d194cbee1af2f16ea598ae8fad666d9b012c8ed2b79a236ec4"^^<xs:string>  .
+_:000000000003ba27aa200b1cecaad478d2b00432346c3f1f3986da1afd33e506 <tx> _:e9a66845e05d5abc0ad04ec80f774a7e585c6e8db975962d069a522137b80c1d .
+_:e9a66845e05d5abc0ad04ec80f774a7e585c6e8db975962d069a522137b80c1d <tx_hash> "e9a66845e05d5abc0ad04ec80f774a7e585c6e8db975962d069a522137b80c1d"^^<xs:string>  .
 ```

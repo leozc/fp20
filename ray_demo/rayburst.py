@@ -25,9 +25,23 @@ class CounterActor(object):
 ## An example for polling ray actors for their work progress.
 if __name__ == "__main__":
     #
-    #  Hang here, if ray is not globally installed (in your default venv?)
-    ray.init()  
-    
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Test Ray with local and remote cluster')
+    parser.add_argument("-p",
+                        "--port",
+                        type=int,
+                        help="A valid port number > 1024",
+                        required='True',
+                        default=0)
+    args = parser.parse_args()
+    if args.port and args.port > 1024 and args.port < 65536:
+        print(f"connecting to local cluster at port {args.port}")
+        ray.util.connect(f"127.0.0.1:{args.port}")
+    else:
+        ray.init()
+
+
     # init x objects
     counters = [
         CounterActor.options("c {}".format(x)).remote() for x in range(10)

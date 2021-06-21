@@ -32,7 +32,7 @@ The learning curve of GraphDB is steep, be patient and start out with some readi
 * [DQL Type](https://dgraph.io/docs/query-language/type-system/)
 * [DQL Query](https://dgraph.io/docs/query-language/graphql-fundamentals/)
 
-# Here is an example payload for BTC block (400)
+## Here is an example payload for BTC block (400)
 
 ```json
 

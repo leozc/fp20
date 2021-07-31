@@ -12,7 +12,7 @@
 __pycache__/
 *.pyc
 .venv
-
+.vscode/
 # Editors
 .idea/
 *.iml

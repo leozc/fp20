@@ -38,10 +38,14 @@ QUERY=Template('''
 
 
 if __name__ == "__main__":
-  import importlib.resources
-  from uniwatcher import watcher
-  API_URL="""https://gateway.thegraph.com/api/[api-key]/subgraphs/id/0x9bde7bf4d5b13ef94373ced7c8ee0be59735a298-2"""
+  import datetime
   import argparse
+  import importlib.resources
+  import json 	
+  from uniwatcher import watcher
+  
+  API_URL="""https://gateway.thegraph.com/api/[api-key]/subgraphs/id/0x9bde7bf4d5b13ef94373ced7c8ee0be59735a298-2"""
+  
 
   parser = argparse.ArgumentParser(description='Fetch stat for the Uniswap position, thegraph API key required')
   parser.add_argument("-i",
@@ -69,8 +73,11 @@ if __name__ == "__main__":
   # turn on/off to print the API url with token 
   #print(API_URL)
   schema = importlib.resources.read_text(__package__, "schema.graphql")
-  import json 	
+
 # Serializing json
   r = watcher.execute(API_URL, q, gqlschema = schema)
+  r["queryUtcTimeStamp"]=str(datetime.datetime.now())
   json_object = json.dumps(r, indent = 2)
+
+
   print(json_object)

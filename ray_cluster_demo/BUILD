@@ -1,10 +1,10 @@
-python_library(
-    name = "raylib",
+python_sources(
+    name="raylib",
 )
 
 pex_binary(
     dependencies=[":raylib"],
     entry_point="ray_cluster_demo.runlocal",
-    name = "runlocal",
-    execution_mode= 'venv',
+    name="runlocal",
+    execution_mode="venv",
 )

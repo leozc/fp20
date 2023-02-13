@@ -8,6 +8,11 @@ def getBlock(blockNum: int):
                         timeout=2.50)
     return block_data.json()
 
+# sort a string in order
+def sortString(s):
+    return ''.join(sorted(s))
+
+# print a binary tree in re
 
 def json2rdf(block_data):
 

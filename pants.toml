@@ -2,23 +2,19 @@
 # Licensed under the Apache License, Version 2.0 (see LICENSE).
 
 [GLOBAL]
-pants_version = "2.14.0a1"
+pants_version = "2.15.0rc5"
 pantsd = true  # Enable the Pants daemon for better performance.
 
 backend_packages.add = [
-  "pants.backend.awslambda.python",
-  "pants.backend.codegen.protobuf.python",
+#  "pants.backend.awslambda.python",
+#  "pants.backend.codegen.protobuf.python",
   "pants.backend.python",
-  "pants.backend.python.lint.docformatter",
-  "pants.backend.python.lint.black",
-  "pants.backend.python.lint.flake8",
-  "pants.backend.python.lint.isort",
-  "pants.backend.python.typecheck.mypy",
-  "pants.backend.docker",
-
-  # Adds the `py-constraints` goal, as this example repository has
-  # both Python 2 and Python 3 code.
-  "pants.backend.python.mixed_interpreter_constraints",
+#  "pants.backend.python.lint.docformatter",
+# "pants.backend.python.lint.black",
+#  "pants.backend.python.lint.flake8",
+#  "pants.backend.python.lint.isort",
+#  "pants.backend.python.typecheck.mypy",
+#  "pants.backend.docker",
 ]
 
 [source]
@@ -29,27 +25,25 @@ root_patterns = [
   "test/python"
   ]
 
+[python-bootstrap]
+search_path = [
+    # This will use all interpreters in `$(pyenv root)/versions`.
+    "<PYENV>",
+    "<CONDA_PYTHON_EXE>",
+    "<PATH>",
+]
+
+
 [python]
 # The default interpreter compatibility for code in this repo. Individual targets can override
 #  this with the `interpreter_constraints` field. See
 #  https://www.pantsbuild.org/docs/python-interpreter-compatibility.
-interpreter_constraints = [">=3.7,<=3.9"]
+interpreter_constraints = [">=3.8,<=3.9"]
 # Use a constraints file. See https://www.pantsbuild.org/docs/python-third-party-dependencies.
 #requirement_constraints = "constraints.txt"
 #resolve_all_constraints = false
 enable_resolves = true
 
-[python-infer]
-init_files = "always"
-
-[flake8]
-config = "build-support/.flake8"
-
-[isort]
-config = [".isort.cfg"]
-
-[mypy]
-config = "build-support/mypy.ini"
 
 [anonymous-telemetry]
 enabled = true

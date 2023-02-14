@@ -1,18 +1,21 @@
-# Copyright 2020 Pants project contributors.
-# Licensed under the Apache License, Version 2.0 (see LICENSE).
 
+# Copyright 2020 Pants project contributors.
+# Editors
+# Licensed under the Apache License, Version 2.0 (see LICENSE).
 # Pants workspace files
-/.pants.d/
-/dist
-/.pids
-/.pants.workdir.file_lock*
-/.cache
-/.vscode
 # Python files
+
 __pycache__/
-*.pyc
+.idea/
 .venv
 .vscode/
-# Editors
-.idea/
 *.iml
+*.pyc
+.cache
+.pants.d/
+.pants.workdir.file_lock*
+.pids
+.vscode
+dist
+lightning_logs/*
+MNIST/*

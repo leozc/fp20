@@ -1,1 +1,0 @@
-from pymilvus import Collection

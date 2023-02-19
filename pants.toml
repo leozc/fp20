@@ -33,6 +33,8 @@ search_path = [
     "<PATH>",
 ]
 
+[repl]
+shell = "ipython"
 
 [python]
 # The default interpreter compatibility for code in this repo. Individual targets can override

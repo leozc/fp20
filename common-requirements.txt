@@ -1,4 +1,7 @@
+jsonschema
+lightning
+nltk
+pymilvus
+python-jose[cryptography]
 torch
 torchvision
-lightning
-pymilvus

@@ -2,11 +2,6 @@ import json
 import jsonschema
 import os
 
-schema_path = os.path.dirname(os.path.abspath(__file__)) + '/schema.json'
-# Load the JSON schema from an external file
-with open(schema_path, 'r') as f:
-    schema = json.load(f)
-
 # Example JSON object to validate
 json_obj = {
     "community": "chainmedata",
@@ -40,6 +35,10 @@ json_obj = {
 
 def main():
     try:
+        schema_path = os.path.dirname(os.path.abspath(__file__)) + '/schema.json'
+        # Load the JSON schema from an external file
+        with open(schema_path, 'r') as f:
+            schema = json.load(f)
         jsonschema.validate(json_obj, schema)
         print("Validation successful!")
     except jsonschema.exceptions.ValidationError as e:
